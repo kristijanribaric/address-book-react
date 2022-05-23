@@ -1,0 +1,33 @@
+@use './variables.scss' as var;
+
+@mixin formWrap($margin-top) {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+    margin: $margin-top auto; 
+    padding: 2rem;
+
+    @media (min-width: var.$md) {
+        width: 60%;
+        padding: 2.25rem;
+    }
+
+    @media (min-width: var.$lg) {
+        width: 30%;
+        padding: 3rem;
+    }
+
+    form {
+        margin: auto;
+    }
+}
+
+@mixin btn ($transition) {
+    background-color: var.$primary-color;
+    &:hover {
+        background-color: var.$secondary-color;
+    }
+    transition: $transition;
+}

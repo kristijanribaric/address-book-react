@@ -1,0 +1,9 @@
+@use '../abstract/mixins.scss' as mixin;
+@use '../abstract/variables.scss' as var;
+
+.input{  
+    &:focus{
+        border-color: var.$primary-color;
+    }
+}
+

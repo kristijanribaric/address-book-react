@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Poppins:wght@100;300;400;600;700&display=swap');
+
+//colors
+$primary-color: #ef9273;
+$secondary-color: #192058;
+$text-color: #0d0d0d;
+
+// shaddow
+$shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);;
+$shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+$shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+
+// breakpoints
+
+$sm: 640px;
+$md: 768px;
+$lg: 1024px;
+$xl: 1280px;
+
+// fonts 
+$open-sans-font: 'Open Sans', sans-serif;
+$poppins-font: 'Poppins', sans-serif;
+
+
+// transitions
+
+$transition-all : all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+
+// border radius
+
+$radius: 0.5rem

@@ -1,0 +1,36 @@
+@use '../abstract/mixins.scss' as mixin;
+@use '../abstract/variables.scss' as var;
+
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.divider {
+    margin: 1.5rem 0;
+}
+
+.inputWrapper {
+    margin: 1rem 0;
+}
+
+.input{  
+    &:focus{
+        border-color: var.$primary-color;
+    }
+}
+
+
+.btn {
+    margin-top: 1rem;
+    @include mixin.btn(var.$transition-all);
+}
+
+
+
+
+.selected {
+    background-color: var.$primary-color;
+    color: var.$text-color;
+}

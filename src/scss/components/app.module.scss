@@ -1,0 +1,6 @@
+@use '../abstract/variables.scss' as var;
+
+.global * {
+    font-family: var.$open-sans-font;
+    box-sizing: border-box;
+}

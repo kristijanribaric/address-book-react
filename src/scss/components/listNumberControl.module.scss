@@ -1,0 +1,10 @@
+@use '../abstract/mixins.scss' as mixin;
+@use '../abstract/variables.scss' as var;
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.label {display: block;}

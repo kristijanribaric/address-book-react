@@ -1,0 +1,38 @@
+@use '../abstract/mixins.scss' as mixin;
+@use '../abstract/variables.scss' as var;
+
+.contactsWrapper {
+    width: 100%;
+    margin-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: var.$md) {
+        width: 80%;
+    }
+
+    @media (min-width: var.$lg) {
+        width: 50%;
+    }
+
+}
+
+.listControlWrapper {
+    width: 100%;
+
+    @media (min-width: var.$md) {
+        width: 90%;
+    }
+
+    @media (min-width: var.$lg) {
+        width: 70%;
+    }
+
+    p{
+        margin: 0 1rem;
+    }
+}
+
+.active {
+    background-color: var.$secondary-color;
+}

@@ -1,0 +1,11 @@
+@use '../abstract/mixins.scss' as mixin;
+@use '../abstract/variables.scss' as var;
+
+.wrapper {
+    @include mixin.formWrap(4rem);
+}
+
+.title {
+    font-family: var.$poppins-font;
+    font-weight: 600;
+}
