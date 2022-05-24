@@ -8,11 +8,10 @@ import ListFilterControl from './listFilterControl';
 import ListSortControl from './listSortControl';
 
 const ContactTable : React.FC <{contacts: Contact[]}> = (props) => {
-   const [contactNumber, setContactNumber] = useState("2");
+   const [contactNumber, setContactNumber] = useState("15");
    const [activePage, setPage] = useState<number>(1);
    const [sort, setSort] = useState("asc");
    const [contacts, setContacts] = useState(props.contacts.sort((a,b) => (a.lastName > b.lastName) ? 1 : ((b.lastName > a.lastName) ? -1 : 0)));
-    console.log(contacts)
    const onchangeNumberOfContacts =  (value: string) => {
        setContactNumber(value);
        setPage(1);

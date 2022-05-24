@@ -32,8 +32,11 @@ nav {
     align-items: center;
 }
 
-.userContainer {
+.rightContainer {
     margin: 0 2rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
 }
 
 ul {
@@ -66,4 +69,8 @@ ul {
 
 .tab {
     color: white;
+}
+
+.btn {
+    @include mixin.btn(var.$transition-all);
 }

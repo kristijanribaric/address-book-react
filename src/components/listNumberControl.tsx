@@ -12,9 +12,9 @@ const ListNumberControl : React.FC<{contactsNumber: string, onChangeNumber: (val
               value={props.contactsNumber}
               onChange={(value)=> {props.onChangeNumber(value)}}
               data={[
-                  { label: '15', value: '2' },
-                  { label: '30', value: '3' },
-                  { label: '45', value: '4' },
+                  { label: '15', value: '15' },
+                  { label: '30', value: '30' },
+                  { label: '45', value: '45' },
               ]}
           />
         </InputWrapper>

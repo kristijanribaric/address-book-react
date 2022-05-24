@@ -1,24 +1,40 @@
 import React from 'react'
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Adresar from './pages/Adresar';
 import Kontakt from './pages/Kontakt';
-import SignUp from './pages/SignUp';
+import SignIn from './pages/SignIn';
 import Header from './components/header';
 import NotFound from './pages/NotFound';
 import styles from './scss/components/app.module.scss'
+import { NotificationsProvider } from '@mantine/notifications';
+import { useContext } from 'react';
+import AuthContext from './store/authContext';
 
 
 const App : React.FC = () => {
+  const authCtx = useContext(AuthContext);
   return (
     <div className={styles.global}>
-      <Routes >
-        <Route path="/" element={<SignUp/>} />
-        <Route path="/*" element={<Header/>} >
-          <Route path="adresar" element={<Adresar/>} />
-          <Route path="kontakt" element={<Kontakt/>} />
-          <Route path="*" element={<NotFound/>} />
-        </Route> 
-      </Routes>
+      <NotificationsProvider autoClose={3000} position="top-center">
+          {authCtx.isLoggedIn ?  
+            <Routes>
+              <Route path="/" element={<Navigate to="/adresar" replace />} />
+              <Route path="/*" element={<Header/>} >
+                <Route path="adresar" element={<Adresar/>} />
+                <Route path="kontakt" element={<Kontakt/>} />
+                <Route path="*" element={<NotFound/>} />
+              </Route>
+            </Routes> : 
+            <Routes>
+              <Route path="/" element={<SignIn/>} />
+              <Route path="/*" element={<Navigate to="/" replace />}/>
+            </Routes>
+          }
+          
+      
+          
+        
+      </NotificationsProvider>
     </div>
    
   )

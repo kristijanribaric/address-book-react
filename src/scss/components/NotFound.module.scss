@@ -1,0 +1,12 @@
+@use '../abstract/mixins.scss' as mixin;
+@use '../abstract/variables.scss' as var;
+
+.wrapper {
+    @include mixin.formWrap(3.5rem);
+    text-align: center;
+    h1 {
+        font-size: 14rem;
+        margin: 0;
+        color: rgb(216, 216, 216);
+    }
+}

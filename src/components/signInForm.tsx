@@ -1,16 +1,14 @@
 import React, { useState } from 'react'
 import styles from '../scss/components/loginForm.module.scss'
-import { useNavigate } from 'react-router-dom';
-import { TextInput, Button, PasswordInput } from '@mantine/core';
 
-const LoginForm : React.FC = () => {
+import { TextInput, Button, PasswordInput, LoadingOverlay } from '@mantine/core';
+
+const SignInForm : React.FC<{isSignIn : (value:boolean)=>void, submitHandler: (username:string,password:string)=>void, isLoading: boolean}> = (props) => {
     const [enteredUsername, setEnteredUsername] = useState("");
     const [enteredUsernameErrorisVisible, setEnteredUsernameErrorisVisible] = useState(false);
     const [enteredPassword, setEnteredPassword] = useState("");
     const [enteredPasswordErrorisVisible, setEnteredPasswordErrorisVisible] = useState(false);
-    const navigate = useNavigate();
-
-
+    
     const usernameValidator = (username : string): boolean => {
         if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(username)) {
             return true
@@ -49,19 +47,20 @@ const LoginForm : React.FC = () => {
             return;
         }
 
+        props.submitHandler(enteredUsername, enteredPassword);
 
-        navigate('/adresar', { replace: true })
+        
 
 
     };
 
     return (
         <form onSubmit={formSubmitHandler} className={styles.form}>
-
             <TextInput
                 placeholder="Your Username"
                 label="Username"
                 required
+                disabled={props.isLoading}
                 error={enteredUsernameErrorisVisible && "Username must be a valid email form"}
                 onFocus={() => setEnteredUsernameErrorisVisible(false)}
                 value={enteredUsername}
@@ -72,8 +71,8 @@ const LoginForm : React.FC = () => {
             <PasswordInput
                 placeholder="Your Password"
                 label="Password"
-                description='Password must be longer than 6 characters, contain atleast one number and "+,!,#,$,-" character'
                 required
+                disabled={props.isLoading}
                 error={enteredPasswordErrorisVisible && 'Invalid password format'}
                 onFocus={() => setEnteredPasswordErrorisVisible(false)}
                 value={enteredPassword}
@@ -81,9 +80,12 @@ const LoginForm : React.FC = () => {
                 classNames={{root : styles.inputWrapper,defaultVariant : styles.input}}
             />
 
-            <Button classNames={{ filled : styles.btn}} type="submit">Log in</Button>
+            <Button classNames={{ filled : styles.btn}} loading={props.isLoading} type="submit">Log in</Button>
+            <div className={styles.bottomWrapper}>
+            <p>Don't have an account?</p><a onClick={()=>props.isSignIn(false)}>Register</a>
+            </div>
         </form>
     )
 }
 
-export default LoginForm;
+export default SignInForm;

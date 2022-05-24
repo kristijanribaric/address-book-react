@@ -1,0 +1,11 @@
+@use '../abstract/mixins.scss' as mixin;
+@use '../abstract/variables.scss' as var;
+
+.wrapper {
+    text-align: center
+}
+
+.btn {
+    @include mixin.btn(var.$transition-all);
+
+}

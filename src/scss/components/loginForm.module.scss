@@ -24,3 +24,17 @@
     @include mixin.btn(var.$transition-all);
 }
 
+.bottomWrapper {
+    display: flex;
+    align-items: center;
+
+    a {
+        display: inline-block;
+        color: var.$primary-color;
+        &:hover {
+            text-decoration: underline;
+        }
+        cursor: pointer;
+        margin-left: 0.5rem;
+    }
+}

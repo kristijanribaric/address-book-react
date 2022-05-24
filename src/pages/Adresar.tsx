@@ -2,10 +2,17 @@ import styles from '../scss/components/Adresar.module.scss';
 import { Loader } from "@mantine/core";
 import useFetch from "../hooks/useFetch";
 import ContactTable from "../components/contactTable";
+import { useContext } from 'react';
+import AuthContext from '../store/authContext';
+import { useNavigate } from 'react-router-dom';
+import NoContacts from '../components/noContacts';
 
 const Adresar : React.FC = () => {
-  const { contacts, isLoading, error} = useFetch('https://adressbook-b056a-default-rtdb.europe-west1.firebasedatabase.app/contacts.json');
-  let content = <p>Found no Contacts.</p>;
+  const authCtx = useContext(AuthContext);
+  const author = authCtx.id;
+  
+  const { contacts, isLoading, error} = useFetch(`https://adressbook-b056a-default-rtdb.europe-west1.firebasedatabase.app/contacts.json?orderBy="author"&equalTo="${author}"`);
+  let content = <NoContacts/>;
 
   if (contacts.length > 0) {
     content = <ContactTable contacts={contacts} />;

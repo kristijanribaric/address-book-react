@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState , useContext } from 'react';
 import styles from '../scss/components/contactForm.module.scss'
 import useInput from '../hooks/useInput';
 import { TextInput, Divider, Select, Button } from '@mantine/core';
 import { DatePicker } from '@mantine/dates';
+import { Contact } from '../models/models';
+import AuthContext from '../store/authContext';
 
-const ContactForm : React.FC<{upload : (data:{})=>{}}> = (props) => {
+const ContactForm : React.FC<{upload : (data:Contact)=>{}, isLoading: boolean}> = (props) => {
+    const authCtx = useContext(AuthContext);
+    console.log(authCtx);
+    const author = authCtx.id;
     const {
         value: enteredFirstName,
         isValid: enteredFirstNameIsValid,
@@ -59,7 +64,7 @@ const ContactForm : React.FC<{upload : (data:{})=>{}}> = (props) => {
           return;
         }
        
-        props.upload({firstName: enteredFirstName, lastName: enteredLastName, date: enteredDate, contactType: enteredContactType, contactNumber: enteredContactNumber})
+        props.upload({firstName: enteredFirstName, lastName: enteredLastName, date: enteredDate, contactType: enteredContactType, contactNumber: enteredContactNumber, author : author})
         
     
         resetFirstNameInput();
@@ -78,6 +83,7 @@ const ContactForm : React.FC<{upload : (data:{})=>{}}> = (props) => {
             placeholder="Person's First Name"
             label="First Name"
             required
+            disabled={props.isLoading}
             error={firstNameInputHasError && "First name must not be empty or contain more than 100 characters"}
             value={enteredFirstName}
             onChange={firstNameChangedHandler}
@@ -89,6 +95,7 @@ const ContactForm : React.FC<{upload : (data:{})=>{}}> = (props) => {
             placeholder="Person's Last Name"
             label="Last Name"
             required
+            disabled={props.isLoading}
             error={lastNameInputHasError && "Last name must not be empty or contain more than 300 characters"}
             value={enteredLastName}
             onChange={lastNameChangedHandler}
@@ -99,6 +106,7 @@ const ContactForm : React.FC<{upload : (data:{})=>{}}> = (props) => {
         <DatePicker
             placeholder="Pick date" 
             label="Event date" 
+            disabled={props.isLoading}
             value={enteredDate}
             onChange={(newValue) => {setenteredDate(newValue)}}
             classNames={{root : styles.inputWrapper, defaultVariant: styles.input, selected: styles.selected}}
@@ -109,6 +117,7 @@ const ContactForm : React.FC<{upload : (data:{})=>{}}> = (props) => {
         <Select
             label="Contact type"
             required
+            disabled={props.isLoading}
             placeholder="Pick one"
             onChange={contactTypeChangedHandler}
             onBlur={contactTypeBlurHandler}
@@ -126,13 +135,14 @@ const ContactForm : React.FC<{upload : (data:{})=>{}}> = (props) => {
             placeholder="Person's Contact Number"
             label="Contact Number"
             required
+            disabled={props.isLoading}
             error={contactNumberInputHasError && "Contact number must not be empty"}
             value={enteredContactNumber}
             onChange={contactNumberChangedHandler}
             onBlur={contactNumberBlurHandler}
             classNames={{root : styles.inputWrapper, defaultVariant: styles.input}}
         />
-      <Button classNames={{ filled : styles.btn}} type="submit">Add Contact</Button>
+      <Button loading={props.isLoading} classNames={{ filled : styles.btn}} type="submit">Add Contact</Button>
     </form>
   )
 }
