@@ -13,6 +13,7 @@ nav {
 .logoContainer {
     display: flex;
     align-items: center;
+    text-decoration: none;
     .logo {
         color: var.$primary-color;
         font-size: 2rem;
@@ -20,6 +21,7 @@ nav {
     }
     h1 {
         font-family: var.$poppins-font;
+        color: white;
     }
     
 }

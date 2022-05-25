@@ -1,0 +1,22 @@
+@use '../abstract/mixins.scss' as mixin;
+@use '../abstract/variables.scss' as var;
+
+
+
+.name {
+    text-align: center;
+    color: var.$primary-color;
+    font-size: 2rem;
+    font-family: var.$poppins-font;
+}
+
+.contactType, .birthday {
+    color: var.$secondary-color;
+    font-weight: 600;
+
+    margin: 0 0.5rem;
+}
+
+.icon {
+    margin-right: 0.25rem;
+}

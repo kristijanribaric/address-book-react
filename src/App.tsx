@@ -10,6 +10,7 @@ import { NotificationsProvider } from '@mantine/notifications';
 import { useContext } from 'react';
 import AuthContext from './store/authContext';
 import Omiljeni from './pages/Omiljeni';
+import Detalji from './pages/Detalji';
 
 
 const App : React.FC = () => {
@@ -26,8 +27,11 @@ const App : React.FC = () => {
                 <Route path="omiljeni" element={<Omiljeni/>} />
               </Route>
              
-             
-              <Route path="kontakt" element={<Kontakt/>} />
+              <Route path="kontakt">
+                <Route index={true} element={<Kontakt/>} />
+                <Route path="detalji/:id" element={<Detalji/>} />
+              </Route>
+              
               <Route path="*" element={<NotFound/>} />
               </Route>
             </Routes> : 

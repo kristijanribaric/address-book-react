@@ -2,20 +2,23 @@
 @use '../abstract/variables.scss' as var;
 
 .card {
-    border-radius: var.$radius;
-    min-height: 8rem;
     padding: 0.125rem;
     margin: 0.5rem 0.8rem;
     width: 100%;
     position: relative;
 
-   h2 {
-       color: var.$primary-color
-   }
+    h2 {
+        a {
+            text-decoration: none;
+            color: var.$secondary-color;
+        }
+    }
 
-   span {
-    color: var.$primary-color
-   }
+    .star {
+        a {
+            color: var.$primary-color
+        }
+    }
 
    .divider {
        width: 90%;
@@ -23,6 +26,5 @@
        bottom: 0;
    }
 
-   min-height: 8rem;
 
 }

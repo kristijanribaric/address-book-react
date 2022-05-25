@@ -2,7 +2,7 @@
 @use '../abstract/variables.scss' as var;
 
 .formWrapper {
-    @include mixin.formWrap(8rem);
+    @include mixin.formWrap(6rem);
    
     box-shadow: var.$shadow-xl;
     color: var.$text-color;

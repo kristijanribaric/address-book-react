@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { Outlet, NavLink } from 'react-router-dom';
+import { Outlet, NavLink, Link } from 'react-router-dom';
 import styles from '../scss/components/header.module.scss'
 import { FaAddressBook } from 'react-icons/fa';
 import AuthContext from '../store/authContext';
@@ -31,10 +31,10 @@ const Header : React.FC = () => {
     <>
       <nav>
         <div className={styles.logoUserWrapper}>
-          <div className={styles.logoContainer}>
+          <Link to="/adresar" className={styles.logoContainer}>
             <FaAddressBook className={styles.logo}/>
             <h1>My Address Book</h1>
-          </div>
+          </Link>
           <div className={styles.rightContainer}>
             {isLoggedIn && email && <p>{email}</p>}
             {isLoggedIn && <Button onClick={signOutHandler} classNames={{ filled : styles.btn}}>Sign out</Button>}
@@ -43,8 +43,8 @@ const Header : React.FC = () => {
         </div>
         <ul>
               <li><NavLink end to="/adresar" className={(navData) => (navData.isActive? styles.active : styles.tab)}>Address Book</NavLink></li>
-              <li><NavLink  to="/adresar/omiljeni" className={(navData) => (navData.isActive ? styles.active : styles.tab)}>Favorites</NavLink></li>
-              <li><NavLink to="/kontakt" className={(navData) => (navData.isActive ? styles.active : styles.tab)}>New Contact</NavLink></li>
+              <li><NavLink end to="/adresar/omiljeni" className={(navData) => (navData.isActive ? styles.active : styles.tab)}>Favorites</NavLink></li>
+              <li><NavLink end to="/kontakt" className={(navData) => (navData.isActive ? styles.active : styles.tab)}>New Contact</NavLink></li>
         </ul>
         <Modal
         opened={opened}
@@ -56,8 +56,9 @@ const Header : React.FC = () => {
 
       >
         <ul>
-                <li><NavLink to="/adresar" onClick={() => setOpened((o) => !o)} className={(navData) => (navData.isActive ? styles.mobileActive : styles.mobileTab)}>Address Book</NavLink></li>
-                <li><NavLink to="/kontakt" onClick={() => setOpened((o) => !o)} className={(navData) => (navData.isActive ? styles.mobileActive : styles.mobileTab)}>New Contact</NavLink></li>
+                <li><NavLink end to="/adresar" onClick={() => setOpened((o) => !o)} className={(navData) => (navData.isActive ? styles.mobileActive : styles.mobileTab)}>Address Book</NavLink></li>
+                <li><NavLink end to="/adresar/omiljeni" onClick={() => setOpened((o) => !o)} className={(navData) => (navData.isActive ? styles.mobileActive : styles.mobileTab)}>Favorites</NavLink></li>
+                <li><NavLink end to="/kontakt" onClick={() => setOpened((o) => !o)} className={(navData) => (navData.isActive ? styles.mobileActive : styles.mobileTab)}>New Contact</NavLink></li>
                 <li><a onClick={signOutHandler} className={styles.mobileTab}>Sign out</a></li>
                 <li><p className={styles.mobileEmail}>{authCtx.email}</p></li>
         </ul>
