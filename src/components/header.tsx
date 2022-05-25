@@ -37,7 +37,7 @@ const Header : React.FC = () => {
           </div>
           <div className={styles.rightContainer}>
             {isLoggedIn && email && <p>{email}</p>}
-            {isLoggedIn && <Button onClick={signOutHandler} color="" classNames={{ filled : styles.btn}}>Sign out</Button>}
+            {isLoggedIn && <Button onClick={signOutHandler} classNames={{ filled : styles.btn}}>Sign out</Button>}
             <Burger opened={opened} onClick={() => setOpened((o) => !o)} className={styles.burger}  color="#ffff"/>
           </div>
         </div>
@@ -61,15 +61,8 @@ const Header : React.FC = () => {
                 <li><p className={styles.mobileEmail}>{authCtx.email}</p></li>
         </ul>
       </Modal>
-        {/* <div className={opened ? styles.mobileOverlay : styles.mobileOverlayHidden}>
-          <ul>
-                <li><NavLink to="/adresar" className={(navData) => (navData.isActive ? styles.active : styles.mobileTab)}>Address Book</NavLink></li>
-                <li><NavLink to="/kontakt" className={(navData) => (navData.isActive ? styles.active : styles.mobileTab)}>New Contact</NavLink></li>
-                <li><a onClick={signOutHandler} className={styles.mobileTab}>New Contact</a></li>
-          </ul>
-        </div> */}
       </nav>
-       
+      
       <Outlet/>
     </>
     

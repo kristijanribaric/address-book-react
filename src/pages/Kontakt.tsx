@@ -1,18 +1,20 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import ContactForm from '../components/contactForm';
 import { Contact } from '../models/models';
 import styles from '../scss/components/Kontakt.module.scss'
 import { showNotification } from '@mantine/notifications';
 import { useNavigate } from 'react-router-dom';
 import { BsCheckLg, BsXLg } from 'react-icons/bs'
+import AuthContext from '../store/authContext';
 
 const Kontakt : React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const authCtx = useContext(AuthContext);
   const addContactHandler = async (contact:Contact) => {
     setIsLoading(true);
     try {
-      const response = await fetch('https://adressbook-b056a-default-rtdb.europe-west1.firebasedatabase.app/contacts.json', {
+      const response = await fetch(`https://adressbook-b056a-default-rtdb.europe-west1.firebasedatabase.app/contacts.json?auth=${authCtx.token}`, {
         method: 'POST',
         body: JSON.stringify(contact),
         headers: {
