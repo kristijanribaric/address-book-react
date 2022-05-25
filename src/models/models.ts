@@ -5,6 +5,7 @@ export type  Contact = {
     firstName: String,
     lastName: String,
     date?: Date | null,
+    isFavorite : boolean,
     contactType: String,
     contactNumber: String,
     author: string | null | undefined,

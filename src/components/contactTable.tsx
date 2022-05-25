@@ -7,7 +7,7 @@ import styles from '../scss/components/contactTable.module.scss'
 import ListFilterControl from './listFilterControl';
 import ListSortControl from './listSortControl';
 
-const ContactTable : React.FC <{contacts: Contact[]}> = (props) => {
+const ContactTable : React.FC <{contacts: Contact[],changeFavoriteHandler : (isFavorite:boolean, contactId:React.Key|undefined)=>Promise<void>}> = (props) => {
    const [contactNumber, setContactNumber] = useState("15");
    const [activePage, setPage] = useState<number>(1);
    const [sort, setSort] = useState("asc");
@@ -60,7 +60,7 @@ const ContactTable : React.FC <{contacts: Contact[]}> = (props) => {
             </div>  
         </div>
        
-        <ContactCardList contacts={contacts} contactNumber={contactNumber} activePage={activePage}/>
+        <ContactCardList contacts={contacts} contactNumber={contactNumber} activePage={activePage} changeFavoriteHandler={props.changeFavoriteHandler}/>
         <Pagination total={Math.ceil(contacts.length / parseInt(contactNumber))} page={activePage} onChange={setPage} classNames={{active: styles.active}}/>
     </div>
   )

@@ -64,7 +64,7 @@ const ContactForm : React.FC<{upload : (data:Contact)=>{}, isLoading: boolean}> 
           return;
         }
        
-        props.upload({firstName: enteredFirstName, lastName: enteredLastName, date: enteredDate, contactType: enteredContactType, contactNumber: enteredContactNumber, author : author})
+        props.upload({firstName: enteredFirstName, lastName: enteredLastName, date: enteredDate, isFavorite: false, contactType: enteredContactType, contactNumber: enteredContactNumber, author : author})
         
     
         resetFirstNameInput();

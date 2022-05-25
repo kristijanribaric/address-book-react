@@ -4,12 +4,11 @@ import useFetch from "../hooks/useFetch";
 import ContactTable from "../components/contactTable";
 import { useContext } from 'react';
 import AuthContext from '../store/authContext';
-import NoContacts from '../components/noContacts';
 import { showNotification } from '@mantine/notifications';
 
-const Adresar : React.FC = () => {
+const Omiljeni : React.FC = () => {
   const authCtx = useContext(AuthContext);
-  const { contacts, isLoading, error, setRefresher} = useFetch(`https://adressbook-b056a-default-rtdb.europe-west1.firebasedatabase.app/contacts.json?auth=${authCtx.token}&orderBy="author"&equalTo="${authCtx.id}"&orderBy="isFavorite"&equalTo=false`, false);
+  const { contacts, isLoading, error, setRefresher} = useFetch(`https://adressbook-b056a-default-rtdb.europe-west1.firebasedatabase.app/contacts.json?auth=${authCtx.token}&orderBy="author"&equalTo="${authCtx.id}"&orderBy="isFavorite"&equalTo=false`, true);
   const changeFavoriteHandler = async (isFavoriteNEW: boolean, contactId: React.Key | undefined ) => {
     try {
       const response = await fetch(`https://adressbook-b056a-default-rtdb.europe-west1.firebasedatabase.app/contacts/${contactId}/.json?auth=${authCtx.token}`, {
@@ -44,7 +43,7 @@ const Adresar : React.FC = () => {
   }
 
   
-  let content = <NoContacts/>;
+  let content = <p>Found no Favorites.</p>;
 
   if (contacts.length > 0) {
     content = <ContactTable contacts={contacts} changeFavoriteHandler={changeFavoriteHandler} />;
@@ -65,4 +64,4 @@ const Adresar : React.FC = () => {
   )
 }
 
-export default Adresar;
+export default Omiljeni;

@@ -42,7 +42,8 @@ const Header : React.FC = () => {
           </div>
         </div>
         <ul>
-              <li><NavLink to="/adresar" className={(navData) => (navData.isActive ? styles.active : styles.tab)}>Address Book</NavLink></li>
+              <li><NavLink end to="/adresar" className={(navData) => (navData.isActive? styles.active : styles.tab)}>Address Book</NavLink></li>
+              <li><NavLink  to="/adresar/omiljeni" className={(navData) => (navData.isActive ? styles.active : styles.tab)}>Favorites</NavLink></li>
               <li><NavLink to="/kontakt" className={(navData) => (navData.isActive ? styles.active : styles.tab)}>New Contact</NavLink></li>
         </ul>
         <Modal

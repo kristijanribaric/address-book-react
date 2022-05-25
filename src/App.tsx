@@ -9,6 +9,7 @@ import styles from './scss/components/app.module.scss'
 import { NotificationsProvider } from '@mantine/notifications';
 import { useContext } from 'react';
 import AuthContext from './store/authContext';
+import Omiljeni from './pages/Omiljeni';
 
 
 const App : React.FC = () => {
@@ -20,9 +21,14 @@ const App : React.FC = () => {
             <Routes>
               <Route path="/" element={<Navigate to="/adresar" replace />} />
               <Route path="/*" element={<Header/>} >
-                <Route path="adresar" element={<Adresar/>} />
-                <Route path="kontakt" element={<Kontakt/>} />
-                <Route path="*" element={<NotFound/>} />
+              <Route path="adresar" >
+                <Route index={true} element={<Adresar/>}/>
+                <Route path="omiljeni" element={<Omiljeni/>} />
+              </Route>
+             
+             
+              <Route path="kontakt" element={<Kontakt/>} />
+              <Route path="*" element={<NotFound/>} />
               </Route>
             </Routes> : 
             <Routes>

@@ -1,9 +1,11 @@
 import { useState, useEffect, useCallback } from "react";
+import { Contact } from "../models/models";
 
-const useFetch = (url : RequestInfo) => {
+const useFetch = (url : RequestInfo, isFavorites : boolean) => {
     const [contacts, setContacts] = useState<any>([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [refresher, setRefresher] = useState<boolean>(false);
 
     const fetchHandler = useCallback(async () => {
         setIsLoading(true);
@@ -23,14 +25,20 @@ const useFetch = (url : RequestInfo) => {
             id: key,
             firstName: data[key].firstName,
             lastName: data[key].lastName,
+            isFavorite: data[key].isFavorite,
             date: data[key].date,
             contactType: data[key].contactType,
             contactNumber: data[key].contactNumber,
             
             });
         }
-
-        setContacts(loadedContacts);
+        if(isFavorites) {
+            setContacts(loadedContacts.filter((contact: any) =>  contact.isFavorite));
+        }
+        else {
+            setContacts(loadedContacts);
+        }
+        
         } catch (error:any) {
         setError(error.message);
         }
@@ -39,12 +47,14 @@ const useFetch = (url : RequestInfo) => {
 
     useEffect(() => {
         fetchHandler();
-    }, [fetchHandler]);
+    }, [fetchHandler, refresher]);
 
     return {
         contacts,
         isLoading,
-        error
+        error,
+        setRefresher
+        
     }
 };
 
