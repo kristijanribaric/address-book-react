@@ -2,12 +2,12 @@ import { Key } from "react"
 
 export type  Contact = {
     id?: Key,
-    firstName: String,
-    lastName: String,
+    firstName: string,
+    lastName: string,
     date?: Date | null,
     isFavorite : boolean,
-    contactType: String,
-    contactNumber: String,
+    contactType: string,
+    contactNumber: string,
     author: string | null | undefined,
 };
 

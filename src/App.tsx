@@ -11,6 +11,7 @@ import { useContext } from 'react';
 import AuthContext from './store/authContext';
 import Omiljeni from './pages/Omiljeni';
 import Detalji from './pages/Detalji';
+import Uredi from './pages/Uredi';
 
 
 const App : React.FC = () => {
@@ -30,6 +31,7 @@ const App : React.FC = () => {
               <Route path="kontakt">
                 <Route index={true} element={<Kontakt/>} />
                 <Route path="detalji/:id" element={<Detalji/>} />
+                <Route path="uredi/:id" element={<Uredi/>} />
               </Route>
               
               <Route path="*" element={<NotFound/>} />

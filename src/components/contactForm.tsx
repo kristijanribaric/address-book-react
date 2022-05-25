@@ -6,9 +6,8 @@ import { DatePicker } from '@mantine/dates';
 import { Contact } from '../models/models';
 import AuthContext from '../store/authContext';
 
-const ContactForm : React.FC<{upload : (data:Contact)=>{}, isLoading: boolean}> = (props) => {
+const ContactForm : React.FC<{upload : (data:Contact)=>{}, isLoading: boolean, contact?: Contact}> = (props) => {
     const authCtx = useContext(AuthContext);
-    console.log(authCtx);
     const author = authCtx.id;
     const {
         value: enteredFirstName,
@@ -17,7 +16,7 @@ const ContactForm : React.FC<{upload : (data:Contact)=>{}, isLoading: boolean}> 
         valueChangeHandlerText: firstNameChangedHandler,
         inputBlurHandler: firstNameBlurHandler,
         reset: resetFirstNameInput
-    } = useInput(value => value.trim().length < 100 && value.trim() !== '');
+    } = useInput(value => value.trim().length < 100 && value.trim() !== '', props.contact?.firstName);
 
     const {
         value: enteredLastName,
@@ -26,7 +25,7 @@ const ContactForm : React.FC<{upload : (data:Contact)=>{}, isLoading: boolean}> 
         valueChangeHandlerText: lastNameChangedHandler,
         inputBlurHandler: lastNameBlurHandler,
         reset: resetLastNameInput
-    } = useInput(value => value.trim().length < 300 && value.trim() !== '');
+    } = useInput(value => value.trim().length < 300 && value.trim() !== '',props.contact?.lastName);
 
     const {
         value: enteredContactNumber,
@@ -35,7 +34,7 @@ const ContactForm : React.FC<{upload : (data:Contact)=>{}, isLoading: boolean}> 
         valueChangeHandlerText: contactNumberChangedHandler,
         inputBlurHandler: contactNumberBlurHandler,
         reset: resetContactNumberInput
-    } = useInput(value => value.trim() !== '');
+    } = useInput(value => value.trim() !== '', props.contact?.contactNumber);
 
     const {
         value: enteredContactType,
@@ -44,14 +43,17 @@ const ContactForm : React.FC<{upload : (data:Contact)=>{}, isLoading: boolean}> 
         valueChangeHandlerSelect: contactTypeChangedHandler,
         inputBlurHandler: contactTypeBlurHandler,
         reset: resetContactTypeInput
-    } = useInput(value => value.trim() !== '');
+    } = useInput(value => value.trim() !== '', props.contact?.contactType);
 
-
+    const [enteredDate, setenteredDate] = useState<Date | null>(props.contact?.date ? props.contact.date : null);
     let formIsValid = false;
 
     if (enteredFirstNameIsValid && enteredLastNameIsValid) {
         formIsValid = true;
     }
+
+    console.log(enteredDate);
+    console.log(enteredContactType)
 
     const formSubmitHandler = (event:React.FormEvent) => {
         event.preventDefault(); 
@@ -74,8 +76,7 @@ const ContactForm : React.FC<{upload : (data:Contact)=>{}, isLoading: boolean}> 
     
       };
 
-    const [enteredDate, setenteredDate] = useState<Date | null>(null);
-    const [contactType, setcontactType] = useState('');
+    
 
   return (
     <form className={styles.form} onSubmit={formSubmitHandler}> 
@@ -104,10 +105,11 @@ const ContactForm : React.FC<{upload : (data:Contact)=>{}, isLoading: boolean}> 
         />
 
         <DatePicker
-            placeholder="Pick date" 
+            placeholder={enteredDate ? new Date(enteredDate).toLocaleDateString("en-EN", {day: '2-digit', month: 'long' , year: 'numeric'}) : "Pick date" }
             label="Event date" 
             disabled={props.isLoading}
             value={enteredDate}
+            clearable
             onChange={(newValue) => {setenteredDate(newValue)}}
             classNames={{root : styles.inputWrapper, defaultVariant: styles.input, selected: styles.selected}}
         />
@@ -118,7 +120,7 @@ const ContactForm : React.FC<{upload : (data:Contact)=>{}, isLoading: boolean}> 
             label="Contact type"
             required
             disabled={props.isLoading}
-            placeholder="Pick one"
+            placeholder={enteredContactType ? enteredContactType : "Pick one"}
             onChange={contactTypeChangedHandler}
             onBlur={contactTypeBlurHandler}
             data={[
@@ -142,7 +144,7 @@ const ContactForm : React.FC<{upload : (data:Contact)=>{}, isLoading: boolean}> 
             onBlur={contactNumberBlurHandler}
             classNames={{root : styles.inputWrapper, defaultVariant: styles.input}}
         />
-      <Button loading={props.isLoading} classNames={{ filled : styles.btn}} type="submit">Add Contact</Button>
+      <Button loading={props.isLoading} classNames={{ filled : styles.btn}} type="submit">{props.contact ? "Edit Contact" : "Add Contact"}</Button>
     </form>
   )
 }

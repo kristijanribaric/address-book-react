@@ -7,20 +7,17 @@ import AuthContext from '../store/authContext';
 import { showNotification } from '@mantine/notifications';
 import { useParams } from 'react-router-dom';
 import ContactCardDetail from '../components/contactCardDetail';
+import { useNavigate } from 'react-router-dom';
 
 const Detalji : React.FC = () => {
     let params = useParams();  
-    console.log(params)
+    const navigate= useNavigate();
     const authCtx = useContext(AuthContext);
     const { contacts, isLoading, error, setRefresher} = useFetch(`https://adressbook-b056a-default-rtdb.europe-west1.firebasedatabase.app/contacts.json?auth=${authCtx.token}&orderBy="$key"&equalTo="${params.id}"`, false);
-    const changeFavoriteHandler = async (isFavoriteNEW: boolean, contactId: React.Key | undefined ) => {
+    const deleteContactHandler = async (contactId: React.Key | undefined ) => {
         try {
-        const response = await fetch(`https://adressbook-b056a-default-rtdb.europe-west1.firebasedatabase.app/contacts/${contactId}/.json?auth=${authCtx.token}`, {
-            method: 'PATCH',
-            body: JSON.stringify({"isFavorite": isFavoriteNEW}),
-            headers: {
-            'Content-Type': 'application/json'
-            }
+        const response = await fetch(`https://adressbook-b056a-default-rtdb.europe-west1.firebasedatabase.app/contacts/${contactId}.json?auth=${authCtx.token}`, {
+            method: 'DELETE',
         });
 
         if (!response.ok) {
@@ -32,8 +29,8 @@ const Detalji : React.FC = () => {
             throw new Error('Error.');
             }  
         }
-        const data = await response.json();
-        setRefresher(prevValue => !prevValue);
+        
+        navigate('/adresar', {replace: true});
         
         }catch (error:any) {
         showNotification({
@@ -51,7 +48,7 @@ const Detalji : React.FC = () => {
 
     if (contacts.length === 1) {
         console.log(contacts)
-        content = <ContactCardDetail contact={contacts[0]} />;
+        content = <ContactCardDetail deleteContactHandler={deleteContactHandler} contact={contacts[0]} />;
     }
 
     if (error) {

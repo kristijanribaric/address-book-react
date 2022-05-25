@@ -20,3 +20,50 @@
 .icon {
     margin-right: 0.25rem;
 }
+
+.modalContainer {
+    width: 60%;
+    margin: 2rem auto 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.yes {
+    background-color: var.$secondary-color;
+    width: 40%;
+    &:hover {
+        background-color: #12173d;
+    }
+}
+
+.no {
+    background-color: rgb(250, 70, 70);
+    width: 40%;
+    &:hover {
+        background-color: rgb(167, 49, 49);
+    }
+}
+
+.edit {
+    color: var.$secondary-color;
+}
+
+.delete {
+    color: rgb(231, 53, 53);
+}
+
+.actionContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.titleContainer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    h2 {
+        display: flex;
+        margin-right: 1rem;
+    }
+}
