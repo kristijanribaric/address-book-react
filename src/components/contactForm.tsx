@@ -52,9 +52,6 @@ const ContactForm : React.FC<{upload : (data:Contact)=>{}, isLoading: boolean, c
         formIsValid = true;
     }
 
-    console.log(enteredDate);
-    console.log(enteredContactType)
-
     const formSubmitHandler = (event:React.FormEvent) => {
         event.preventDefault(); 
         firstNameBlurHandler();

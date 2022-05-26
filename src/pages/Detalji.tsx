@@ -46,7 +46,6 @@ const Detalji : React.FC = () => {
     let content = <p>Contact not found.</p>;
 
     if (contacts.length === 1) {
-        console.log(contacts)
         content = <ContactCardDetail deleteContactHandler={deleteContactHandler} contact={contacts[0]} />;
     }
 

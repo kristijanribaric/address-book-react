@@ -15,7 +15,6 @@ const SignIn : React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const authCtx = useContext(AuthContext);
-  console.log(authCtx)
   const isSignIn = (value : boolean) => {
     setIsLogIn(value);
   };
