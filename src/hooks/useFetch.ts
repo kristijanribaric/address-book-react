@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { Contact } from "../models/models";
 
 const useFetch = (url : RequestInfo, isFavorites : boolean) => {
-    const [contacts, setContacts] = useState<any>([]);
+    const [contacts, setContacts] = useState<Contact[]>([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
     const [refresher, setRefresher] = useState<boolean>(false);
@@ -33,7 +33,7 @@ const useFetch = (url : RequestInfo, isFavorites : boolean) => {
             });
         }
         if(isFavorites) {
-            setContacts(loadedContacts.filter((contact: any) =>  contact.isFavorite));
+            setContacts(loadedContacts.filter((contact: Contact) =>  contact.isFavorite));
         }
         else {
             setContacts(loadedContacts);

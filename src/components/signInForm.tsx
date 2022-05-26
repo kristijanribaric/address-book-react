@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styles from '../scss/components/loginForm.module.scss'
 
-import { TextInput, Button, PasswordInput, LoadingOverlay } from '@mantine/core';
+import { TextInput, Button, PasswordInput } from '@mantine/core';
 
 const SignInForm : React.FC<{isSignIn : (value:boolean)=>void, submitHandler: (username:string,password:string)=>void, isLoading: boolean}> = (props) => {
     const [enteredUsername, setEnteredUsername] = useState("");

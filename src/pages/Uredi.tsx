@@ -2,12 +2,10 @@ import styles from '../scss/components/Detalji.module.scss';
 import { useState } from 'react';
 import { Loader } from "@mantine/core";
 import useFetch from "../hooks/useFetch";
-import ContactTable from "../components/contactTable";
 import { useContext } from 'react';
 import AuthContext from '../store/authContext';
 import { showNotification } from '@mantine/notifications';
 import { useParams } from 'react-router-dom';
-import ContactCardDetail from '../components/contactCardDetail';
 import { useNavigate } from 'react-router-dom';
 import ContactForm from '../components/contactForm';
 import { BsCheckLg, BsXLg} from 'react-icons/bs';
@@ -68,7 +66,7 @@ const Uredi : React.FC = () => {
     let content = <p>Contact not found.</p>;
 
     if (contacts.length === 1) {
-        content = <ContactForm upload={updateContactHandler} isLoading={isLoading} contact={contacts[0]} />;
+        content = <ContactForm upload={updateContactHandler} isLoading={isUpdating} contact={contacts[0]} />;
     }
 
     if (error) {

@@ -1,4 +1,4 @@
-import React, { FormEvent, useState, useContext } from 'react'
+import React, { useState, useContext } from 'react'
 import SignInForm from '../components/signInForm';
 import styles from '../scss/components/SignUp.module.scss'
 import { FaAddressBook } from 'react-icons/fa';

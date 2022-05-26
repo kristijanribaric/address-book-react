@@ -1,7 +1,6 @@
 import styles from '../scss/components/Detalji.module.scss';
 import { Loader } from "@mantine/core";
 import useFetch from "../hooks/useFetch";
-import ContactTable from "../components/contactTable";
 import { useContext } from 'react';
 import AuthContext from '../store/authContext';
 import { showNotification } from '@mantine/notifications';

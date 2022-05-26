@@ -8,7 +8,7 @@ export type  Contact = {
     isFavorite : boolean,
     contactType: string,
     contactNumber: string,
-    author: string | null | undefined,
+    author?: string | null | undefined,
 };
 
 export interface AuthContextInterface {
