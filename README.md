@@ -1,6 +1,6 @@
 # Address Book
 A simple address book app made with React.
-You can visit it [HERE](https://github.com/facebook/create-react-app](https://address-book-react.vercel.app)).<br><br>
+You can visit it [HERE](https://address-book-react.vercel.app).<br><br>
 
 
 
